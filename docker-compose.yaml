@@ -1,0 +1,16 @@
+services:
+  frontend:
+    image: react-docker
+    container_name: frontend-container
+    restart: always
+    tty: true
+
+    build:
+      context: ./react
+      dockerfile: frontend.dockerfile
+
+    volumes:
+      - ./react/frontend:/home/ubuntu/webapp/frontend
+
+    ports:
+      - "2019:3000"
