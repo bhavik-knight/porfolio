@@ -28,7 +28,7 @@ function Page() {
                     onChange={handleChange}
                     size="large" />
 
-                <h2>this is body of {navbarTopic}</h2>
+                <h2>this is branch no-toggle of {navbarTopic}</h2>
             </Box>
         </Fragment >
     )
