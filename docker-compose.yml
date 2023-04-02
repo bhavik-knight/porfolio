@@ -10,7 +10,9 @@ services:
       dockerfile: frontend.dockerfile
 
     volumes:
-      - ./react/frontend:/home/ubuntu/webapp/frontend
+      - type: bind
+        source: ./react/frontend
+        target: /home/ubuntu/webapp/frontend
 
     ports:
       - "2019:3000"
