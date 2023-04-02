@@ -31,7 +31,7 @@ function Page() {
                 />
 
                 <Box>
-                    <h2>this is branch of {navbarTopic}</h2>
+                    <h2>this is main branch of {navbarTopic}</h2>
                 </Box>
             </Box>
         </Fragment >
