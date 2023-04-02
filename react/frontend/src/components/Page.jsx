@@ -21,14 +21,18 @@ function Page() {
 
     return (
         <Fragment>
-            <Box sx={{ bgcolor: "pink", height: "100vh", width: "100vw" }}>
+            <Box sx={{ bgcolor: "grey", height: "100vh", width: "100vw" }}>
                 <ButtonAppBar
-                    color="standard"
-                    value={navbarTopic}
+                    color={"standard"}
+                    size={"medium"}
+                    fullWidth={true}
                     onChange={handleChange}
-                    size="large" />
+                    value={navbarTopic}
+                />
 
-                <h2>this is body of {navbarTopic}</h2>
+                <Box>
+                    <h2>this is branch of {navbarTopic}</h2>
+                </Box>
             </Box>
         </Fragment >
     )

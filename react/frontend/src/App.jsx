@@ -4,8 +4,20 @@ import { createTheme, ThemeProvider } from "@mui/material";
 
 function App() {
 
+
+  const customTheme = createTheme({
+    components: {
+      root: {
+        color: "red",
+        bgcolor: "green"
+      }
+    }
+  })
+
   return (
-    <Page />
+    <ThemeProvider theme={customTheme}>
+      <Page />
+    </ThemeProvider>
   )
 }
 
