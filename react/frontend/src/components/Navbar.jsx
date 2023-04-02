@@ -1,18 +1,25 @@
+import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, IconButton, ToggleButton, ToggleButtonGroup, Toolbar } from '@mui/material';
+import { AppBar, Box, IconButton, Button, ButtonGroup, Toolbar } from '@mui/material';
 
 // reference: https://dev.to/ramonak/react-how-to-create-a-custom-button-group-component-in-5-minutes-3lfd
 
 function ButtonAppBar(props) {
     const control = {
         color: "white",
-        outline: "white",
-        p: 2
+        border: "1px solid white",
+    }
+
+    const [selectedButton, setSelectedButton] = useState(-1)
+
+    function handleClick(event, i) {
+        setSelectedButton(i)
+        props.onClick(event)
     }
 
     return (
         <Box sx={{ flexGrow: 1, p: 0, m: 0 }} >
-            <AppBar position="static" sx={{ bgcolor: "black" }}>
+            <AppBar position="static" sx={{ bgcolor: "black" /*transaparent*/ }}>
                 <Toolbar sx={{ display: "flexbox" }}>
                     <IconButton
                         size="large"
@@ -23,19 +30,27 @@ function ButtonAppBar(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <ToggleButtonGroup
-                        exclusive={true}
-                        color={props.color}
+
+                    <ButtonGroup
+                        variant={props.variant}
                         size={props.size}
-                        onChange={props.onChange}
-                        value={props.value}
                     >
-                        <ToggleButton sx={{ ...control }} value="home" name="home">Home/Logo</ToggleButton>
-                        <ToggleButton sx={{ ...control }} value="projects" name="projects">projects</ToggleButton>
-                        <ToggleButton sx={{ ...control }} value="certificates" name="certificates">certificates</ToggleButton>
-                        <ToggleButton sx={{ ...control }} value="education" name="education">Education</ToggleButton>
-                        <ToggleButton sx={{ ...control }} value="contactMe" name="contactMe">Contact Me</ToggleButton>
-                    </ToggleButtonGroup>
+                        {
+                            props.buttonList.map((button, index) => (
+                                // console.log(`narvar-button: ${button}`)
+                                <Button
+                                    key={index}
+                                    onClick={(event) => handleClick(event, index)}
+                                    name={button}
+                                    className={index === selectedButton ? "navbar.button:selected" : "navbar.button"}
+                                    sx={{ ...control }}
+                                >
+                                    {button}
+                                </Button>
+                            ))
+                        }
+
+                    </ButtonGroup>
                 </Toolbar>
             </AppBar>
         </ Box >

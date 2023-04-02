@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { ButtonAppBar } from "./Navbar.jsx";
 import { Certificates } from "./Certificates";
 import { Projects } from "./Projects";
@@ -11,28 +11,27 @@ function Page() {
     // to check only one topic out of projects, education, certifications, etc
     const [navbarTopic, setNavbarTopic] = useState("home")
 
-    function handleChange(event, newNavbarTopic) {
-        console.log(`${typeof (newNavbarTopic)}: ${newNavbarTopic}, ${typeof (navbarTopic)}`)
-        setNavbarTopic(newNavbarTopic)
+    function handleChange(event) {
+        // console.log(`${typeof (newNavbarTopic)}: ${newNavbarTopic}, ${typeof (navbarTopic)}`)
+        let pageName = event.target.name[0].toUpperCase() + event.target.name.substr(1)
+        // console.log(`from navbar: ${pageName}`)
+        setNavbarTopic(pageName)
 
         // to set the title bar according to the button clicks
-        document.title = newNavbarTopic
+        document.title = `Bhavik | ${pageName}`
     }
 
     return (
         <Fragment>
             <Box sx={{ bgcolor: "grey", height: "100vh", width: "100vw" }}>
                 <ButtonAppBar
-                    color={"standard"}
-                    size={"medium"}
-                    fullWidth={true}
-                    onChange={handleChange}
-                    value={navbarTopic}
+                    variant="outlined"
+                    size="large"
+                    buttonList={["home/logo", "education", "projects", "certificates", "contact me"]}
+                    onClick={handleChange}
                 />
 
-                <Box>
-                    <h2>this is main branch of {navbarTopic}</h2>
-                </Box>
+                <h2>this is main page of {navbarTopic}</h2>
             </Box>
         </Fragment >
     )
