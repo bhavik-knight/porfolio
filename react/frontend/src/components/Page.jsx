@@ -1,5 +1,5 @@
-import { Fragment, useState, useEffect } from "react";
-import { ButtonAppBar } from "./Navbar.jsx";
+import { useState, } from "react";
+import { Navbar } from "./Navbar.jsx";
 import { Certificates } from "./Certificates";
 import { Projects } from "./Projects";
 import { Education } from "./Education";
@@ -7,7 +7,7 @@ import { ContactMe } from "./ContactMe";
 import { Box } from "@mui/material";
 
 
-function Page() {
+function Page(props) {
     // to check only one topic out of projects, education, certifications, etc
     const [navbarTopic, setNavbarTopic] = useState("home")
 
@@ -21,19 +21,31 @@ function Page() {
         document.title = `Bhavik | ${pageName}`
     }
 
-    return (
-        <Fragment>
-            <Box sx={{ bgcolor: "grey", height: "100vh", width: "100vw" }}>
-                <ButtonAppBar
-                    variant="outlined"
-                    size="large"
-                    buttonList={["home/logo", "education", "projects", "certificates", "contact me"]}
-                    onClick={handleChange}
-                />
+    console.log(`page: ${navbarTopic}`)
+    const [pageBody, setPageBody] = useState(null)
 
-                <h2>this is main page of {navbarTopic}</h2>
-            </Box>
-        </Fragment >
+    // return this to be rendered in the App
+    return (
+        // <Fragment>
+        <Box sx={{ height: "100vh", width: "100vw", /*bgcolor: "pink"*/ }}>
+            <Navbar
+                buttonList={["home", "education", "projects", "certificates", "contact me"]}
+                onClick={handleChange}
+                currentDarkMode={props.currentDarkMode}
+                setDarkMode={props.setDarkMode}
+            />
+            <h2>dark-mode: {JSON.stringify(props.currentDarkMode)}</h2>
+            <h2>this is branch no-toggle of {navbarTopic}</h2>
+            {
+                (navbarTopic === "Home" && <h1> HOME PAGE</h1>) ||
+                (navbarTopic === "Education" && <Education />) ||
+                (navbarTopic === "Projects" && <Projects />) ||
+                (navbarTopic === "Certificates" && <Certificates />) ||
+                (navbarTopic === "Contact me" && <ContactMe />)
+            }
+
+        </Box >
+        // </Fragment >
     )
 }
 
