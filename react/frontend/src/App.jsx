@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Page } from "./components/Page.jsx";
 import { createTheme, ThemeProvider } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -18,8 +18,8 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       {darkMode && <CssBaseline />}
       < Page
-        currentDarkMode={darkMode}
-        setDarkMode={setDarkMode}
+        darkMode={darkMode}
+        changeDarkMode={setDarkMode}
       />
     </ThemeProvider>
   )

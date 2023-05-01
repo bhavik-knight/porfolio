@@ -31,8 +31,8 @@ function Page(props) {
             <Navbar
                 buttonList={["home", "education", "projects", "certificates", "contact me"]}
                 onClick={handleChange}
-                currentDarkMode={props.currentDarkMode}
-                setDarkMode={props.setDarkMode}
+                darkMode={props.darkMode}
+                changeDarkMode={props.changeDarkMode}
             />
             <h2>dark-mode: {JSON.stringify(props.currentDarkMode)}</h2>
             <h2>this is branch no-toggle of {navbarTopic}</h2>
