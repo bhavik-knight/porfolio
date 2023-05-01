@@ -35,7 +35,7 @@ function Navbar(props) {
 
     // check the current dark mode value; change it on the button click and pass it to the parents
     // reference: https://stackoverflow.com/questions/40722382/how-to-pass-state-back-to-parent-in-react
-    let currentDarkModeValue = props.currentDarkMode
+    // let currentDarkModeValue = props.DarkMode
 
     // this will be return to be rendered in Page
     return (
@@ -83,13 +83,13 @@ function Navbar(props) {
                     disableTouchRipple
                     disableFocusRipple
                     disableRipple
-                    value={currentDarkModeValue}
+                    value={props.darkMode}
                     name="darkMode"
                     className="dark-mode ms-auto"
                     sx={{ ...controls, border: "none" }}
-                    onChange={() => { props.setDarkMode(!currentDarkModeValue) }}
+                    onChange={() => { props.changeDarkMode(!props.darkMode) }}
                 >
-                    {currentDarkModeValue ? <BrightNess7Icon /> : <BrightNess4Icon />}
+                    {props.darkMode ? <BrightNess7Icon /> : <BrightNess4Icon />}
                 </ToggleButton>
             </Toolbar>
         </AppBar>
